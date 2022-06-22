@@ -1,0 +1,35 @@
+/*
+    primary:'black',
+    brown:'#816868',
+    lightGreen:'#a5dfb2',
+    background:'#f6efed',
+    darkGreen: '#358b59',
+    white:'#ffffff',
+    darkBrown:'#907979'
+*/
+
+
+.textBold {
+    color: #907979;
+    font-weight: bold;
+}
+
+.drawerContainer{ 
+    height: 100vh; 
+    width: 400px; 
+    position: fixed; 
+    top: 0; right: 0; 
+    background-color:#358b59; 
+    z-index:1000; border:1px solid black; color:white;
+
+}
+
+.hyperlink{
+
+}
+
+.hyperlink:hover{
+    text-decoration: underline;
+}
+
+

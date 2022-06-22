@@ -1,0 +1,198 @@
+/*
+    primary:'black',
+    brown:'#816868',
+    lightGreen:'#a5dfb2',
+    background:'#f6efed',
+    darkGreen: '#358b59',
+    white:'#ffffff',
+    darkBrown:'#907979'
+*/
+
+.textBold {
+    color: #907979;
+    font-weight: bold;
+}
+
+.hyperlink {
+    color: #358b59;
+    text-decoration: underline;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.checkbox {
+    accent-color: green;
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+}
+
+
+.columnsContainer {
+    flex: 1;
+    display: flex;
+
+}
+
+.columnSection {
+    width: 100%;
+    position: relative;
+    padding: 0px 10px;
+    align-items: center;
+    justify-content: center;
+    flex:1;
+    border: 1px solid #00800017;
+
+}
+
+.twoColumnSection{
+    display:flex; flex-direction:row; flex:2;
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.middleColumn{
+    padding-left: 10px;
+}
+
+
+.rightColumn {
+    z-index: 100;
+    position: relative;
+    height:100%;
+    padding-left: 10px;
+
+}
+
+
+
+.imageContainer{
+    border:2px solid #907979;
+    max-width: 500px;
+    padding:10px;
+    margin-top: 30px;
+    border-radius: 5px;
+    height:350px;
+    width:350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    cursor: pointer;
+}
+
+.textInput{
+    padding: 15px 0px 15px 0px;
+    border:1px solid #a5dfb2;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance:none;
+    -moz-appearance: none;
+    outline: none;
+    max-width: 450px;
+    width:100%;
+    text-indent: 15px;
+}
+
+.actionButtonSet{
+    position: absolute;
+    bottom:10px;
+    right:0;
+}
+
+.button{
+    background-color:#a5dfb2; color:white; text-align: center; padding:8px 20px; border-radius: 10;
+    font-size: 24px; margin-bottom: 10px; cursor: pointer; 
+    border-radius: 5px;
+    outline: none;
+    border:none;
+    margin-right: 10px;
+}
+
+.roundbuttonContainer{
+    flex-wrap: wrap; 
+    flex-direction: row;
+    display: flex;
+    max-width: 450px;
+}
+.textarea{
+    resize: none;
+    padding: 10px 0px 0px 10px;
+    border:1px solid #a5dfb2;
+    font-size: 18px;
+    border-radius: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance:none;
+    -moz-appearance: none;
+    outline: none;
+    min-width: 200px;
+}
+
+.rightColumnHidden{
+    display: none;
+}
+
+.fileInput{
+    display: none;
+}
+
+
+
+@media screen and (max-width:1314px) {
+    .columnsContainer {
+        flex-direction: column;
+    }
+    .columnSection{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        padding:0;
+    }
+
+    .middleColumn{
+        width:100%;
+        max-width: 600px;
+        padding-left: 5px;
+    }
+
+
+    .rightColumn{
+        width:auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-left: 5px;
+    }
+
+    .roundbuttonContainer{
+        width:400px;
+    }
+
+    .actionButtonSet{
+        position: static;
+        margin-top: 10px;
+    }
+
+    .textInput{
+        max-width:none ;
+    }
+
+    .textarea{
+        padding:0;
+        width:100%;
+    }
+
+
+}

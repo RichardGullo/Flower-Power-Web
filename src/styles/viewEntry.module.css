@@ -1,0 +1,158 @@
+/*
+    primary:'black',
+    brown:'#816868',
+    lightGreen:'#a5dfb2',
+    background:'#f6efed',
+    darkGreen: '#358b59',
+    white:'#ffffff',
+    darkBrown:'#907979'
+*/
+
+
+.textBold {
+    color: #907979;
+    font-weight: bold;
+}
+
+.hyperlink {
+    color: #358b59;
+    text-decoration: underline;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.checkbox {
+    accent-color: green;
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+}
+
+
+.columnsContainer {
+    flex: 1;
+    display: flex;
+}
+
+.columnSection {
+    width: 100%;
+    position: relative;
+    padding: 0px 10px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #00800017;
+}
+
+
+.rightColumn {
+    z-index: 100;
+    max-width: 709px;
+    min-width: 697px;
+    /* border:2px solid black; */
+    margin-top: 10px;
+}
+
+.middleColumn{
+    /* border:2px solid red; */
+    margin-top: 20px;
+}
+
+.leftColumn {
+    /* border: 2px solid dodgerblue;  */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.imageContainer{
+    
+    margin-top: 30px;
+    border-radius: 5px;
+}
+
+.textInput{
+    width:100%;
+    padding: 15px 0;
+    border:1px solid #a5dfb2;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance:none;
+    -moz-appearance: none;
+    outline: none;
+    margin-top: 10px;
+    min-width: 400px;
+  }
+
+
+  
+.middleColumn  p{
+    margin:10px 0px;
+}
+
+.actionButtonSet{
+    position: absolute;
+    bottom:10px;
+    right:0;
+}
+
+.button{
+    background-color:#a5dfb2; color:white; text-align: center; padding:8px 20px; border-radius: 10;
+    font-size: 24px; margin-bottom: 10px; cursor: pointer; 
+    border-radius: 5px;
+    outline: none;
+    border:none;
+    margin-right: 10px;
+}
+
+.textarea{
+    resize: none;
+    padding: 10px 0px 0px 10px;
+    border:1px solid #a5dfb2;
+    font-size: 18px;
+    border-radius: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance:none;
+    -moz-appearance: none;
+    outline: none;
+    min-width: 200px;
+}
+  
+
+
+
+@media screen and (max-width:1339px) {
+    .columnsContainer {
+        flex-direction: column;
+    }
+    .columnSection{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        padding:0;
+    }
+
+    .rightColumn{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-width:fit-content
+    }
+
+    .actionButtonSet{
+        position: static;
+        margin-top: 10px;
+    }
+    .textarea{
+        padding:0;
+        width:100%;
+    }
+}
