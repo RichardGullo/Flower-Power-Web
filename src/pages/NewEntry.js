@@ -34,11 +34,15 @@ function NewEntry(props) {
     // Image Picker
     const[img, setImg] = useState(null);
     const[imgFile, setImgFile] = useState(null);
+
+    
+    const[imgBorder, setImgBorder] = useState(false);
     
 
     const onImageChange = (e) =>{
         const[file] = e.target.files;
         let fileName = e.target.files[0].name;
+        console.log(file);
 
         let ext = fileName.split(".");
         ext = ext[ext.length-1];
@@ -170,6 +174,43 @@ function NewEntry(props) {
 
     }
 
+    function dragOver(e){
+        e.preventDefault();
+        setImgBorder(true);
+    }
+
+    function dragOff(e){
+        console.log(e.target);
+        setImgBorder(false);
+    }
+
+    function drop(e){
+        e.preventDefault();
+        console.log("hello");
+        
+        
+        console.log(e.dataTransfer.files[0]);
+
+        const file = e.dataTransfer.files[0];
+        let fileName = e.dataTransfer.files[0].name;
+
+        let ext = fileName.split(".");
+        ext = ext[ext.length-1];
+
+        if(ext != 'png' && ext != 'jpg' && ext != 'jpeg'){
+            console.log("Invalid file extension");
+            setImgFile(null);
+            setImg(null);
+            setImgBorder(false);
+            return;
+        }
+        setImgBorder(true);
+        setImgFile(e.dataTransfer.files[0]);
+        setImg(URL.createObjectURL(file));
+
+    }
+
+    const imgBorderStyle = imgBorder ? {border:'4px solid #907979'} : {border: '4px dashed #907979'};
 
     useEffect(() => {
         if (cookies['username'] == undefined)
@@ -184,9 +225,9 @@ function NewEntry(props) {
             <div className={styles.columnSection}>
 
                 <div className={styles.leftColumn}>
-                    <div className={styles.imageContainer} onClick={()=>{
+                    <div className={styles.imageContainer} style={imgBorderStyle} onClick={()=>{
                         inputRef.current.click();
-                    }}>
+                    }} onDragOver={dragOver} onDragLeave={dragOff} onDragEnd={dragOff} onDrop={drop}>
                         {img != null ? <img src={img} style={{objectFit:'contain', height:'350px',width:'350px'}}alt="" /> :
                         <div><img src="./images/image-block.png" style={{ objectFit: 'contain', height: 50 }}/>
                         <p>Click this panel to upload an image of your plant</p></div>

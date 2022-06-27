@@ -73,7 +73,7 @@
 
 
 .imageContainer{
-    border:2px solid #907979;
+    border:4px dashed #907979;
     max-width: 500px;
     padding:10px;
     margin-top: 30px;
