@@ -139,6 +139,7 @@ function ModifyEntry(props) {
             const result = await response.text();
     
             console.log(result);
+            navigate('/home');
         }
         catch(err){
             console.log("Error in adding entry to database");

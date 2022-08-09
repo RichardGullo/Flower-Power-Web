@@ -11,11 +11,15 @@ function PlantReminderCard(props) {
 
     const checkboxRef = useRef();
 
-
     function doOnChange(){
         props.onLaunch(checkboxRef, data);
     }
 
+    let expiredDate = props.data.expire_date.split("-");
+    expiredDate = new Date(expiredDate[0], expiredDate[1]-1, expiredDate[2]);
+
+    let timeDifference = expiredDate - new Date();
+    let dayDifference = Math.ceil(timeDifference / (1000*3600*24));
 
     return (
         <div className={styles.plantReminderContainer}>
@@ -23,7 +27,7 @@ function PlantReminderCard(props) {
             <div style={{ border: '1px solid black', width: '100%', padding: '0px 8px' }}>
                 <p><span className={styles.hyperlink}>Nickname</span>: {data.nickname}</p>
                 <p><span className={styles.hyperlink}>Species:</span> {data.species} </p>
-                <p><span className={styles.hyperlink}>Reminder:</span> Water in {data.water} days</p>
+                <p><span className={styles.hyperlink}>Reminder:</span> Water in {dayDifference} days</p>
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '10px' }}>
                     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
 
