@@ -1,3 +1,3 @@
 export default{
-    path:'http://localhost:5003'
+    path:'https://flower-power-backend.onrender.com'
 }
