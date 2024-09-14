@@ -148,6 +148,8 @@ function Search(props) {
           "Content-Type": "application/json",
         }
       });
+
+      populateData();
     } catch (e) {
       console.log("Error in deleting in search component");
     }
