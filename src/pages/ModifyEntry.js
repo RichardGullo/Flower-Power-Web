@@ -24,16 +24,16 @@ function ModifyEntry(props) {
 
     const[nickname, setNickname] = useState(data.nickname);
     const[species, setSpecies] = useState(data.species);
-    const[water, setWater] = useState(data.water);
+    const[water, setWater] = useState(data.waterFreq);
     const[notes,setNotes] = useState(data.notes);
 
 
 
     // Date Picker
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date(data.acquiredDate));
 
     // Image Picker
-    const[originalImage, setOriginalImage] = useState(data.image);
+    const[originalImage, setOriginalImage] = useState(data.photo);
     const[img, setImg] = useState(null);
     const[imgFile, setImgFile] = useState(null);
     
@@ -74,7 +74,7 @@ function ModifyEntry(props) {
 
     ]);
 
-    const [buttonSet, setButtonSet] = useState([...data.classification]);
+    const [buttonSet, setButtonSet] = useState([...data.classes]);
 
     function buttonSelect(obj) {
 
@@ -109,49 +109,65 @@ function ModifyEntry(props) {
     }
 
     async function editEntry(){
-        let formData = new FormData();
-        let acquiredDate = `${startDate.getFullYear()}-${startDate.getMonth()+1}-${startDate.getDate()}`;
-        let expireDate = new Date();
-        expireDate.setDate(expireDate.getDate()+parseInt(water));
-        expireDate = `${expireDate.getFullYear()}-${expireDate.getMonth()+1}-${expireDate.getDate()}`;
 
-        let json = JSON.stringify(buttonSet);
-        console.log(json);
-        
-        formData.append('id', data.id);
-        formData.append('nickname',nickname);
-        formData.append('species',species);
-        formData.append('acquiredDate', acquiredDate);
-        formData.append('expireDate',expireDate);
-        formData.append('class', json);
-        formData.append('notes', notes);
-        formData.append('water', parseInt(water));
-        formData.append('email', cookies['email']);
-        formData.append("file",imgFile);
-        formData.append("image",data.image);
+        let token = cookies['token'];
 
-        try{
-            const response = await fetch(`${Api.path}/editEntryReact.php`,{
-                method:"POST",
-                body:formData
-              });
-            
-            const result = await response.text();
-    
+        let acquiredDate = `${startDate.getFullYear()}-${
+            startDate.getMonth() + 1
+          }-${startDate.getDate()}`;
+
+        const tempData = {
+            nickname,
+            species,
+            notes,
+            classes:[...buttonSet],
+            acquiredDate,
+            waterFreq:water
+        };
+
+        try {
+            let response = await fetch(`${Api.path}/api/v1/flowers/${data._id}`, {
+              method: "PUT",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json", // Set the request headers
+              },
+              body: JSON.stringify(tempData), // Convert the data object to a JSON string
+            });
+      
+            let result = await response.json();
+            let  flower = result.data;
+      
+            console.log(imgFile);
+            const formData = new FormData();
+            formData.append('file',imgFile);
+      
+            // Upload Photo
+            response = await fetch(`${Api.path}/api/v1/flowers/${flower._id}/photo`, {
+              method: "PUT",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              body: formData, // Convert the data object to a JSON string
+            });
+      
+            result = await response.json();
+      
+      
             console.log(result);
-            navigate('/home');
-        }
-        catch(err){
+          } catch (err) {
             console.log("Error in adding entry to database");
             console.log(err);
-        }
+          }
+      
+          navigate("/home");
 
                   
     }
 
 
     useEffect(() => {
-        if (cookies['username'] == undefined)
+        if (cookies['token'] == undefined)
             navigate("/");
 
         props.toggleNav(location.pathname);
@@ -167,8 +183,8 @@ function ModifyEntry(props) {
 
         setRoundButtons(tempRoundButtons);
 
-        let dateParts = data.date_acquired.split("-");
-        setStartDate(new Date(dateParts[0],dateParts[1]-1,dateParts[2]));
+        // let dateParts = data.date_acquired.split("-");
+        // setStartDate(new Date(dateParts[0],dateParts[1]-1,dateParts[2]));
 
 
     }, []);
@@ -178,7 +194,7 @@ function ModifyEntry(props) {
             return <img src={img} style={{objectFit:'contain', height:'350px',width:'350px'}}alt="" />
         }
         else if(originalImage != null){
-            return <img src={`${Api.path}/plant-images/${data.image}`} style={{objectFit:'contain', height:'350px',width:'350px'}}alt="" />
+            return <img src={`${Api.path}/uploads/${data.photo}`} style={{objectFit:'contain', height:'350px',width:'350px'}}alt="" />
         }
         else
             return <div><img src="./images/image-block.png" style={{ objectFit: 'contain', height: 50 }}/>

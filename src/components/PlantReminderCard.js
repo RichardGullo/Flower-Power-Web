@@ -15,24 +15,24 @@ function PlantReminderCard(props) {
         props.onLaunch(checkboxRef, data);
     }
 
-    let expiredDate = props.data.expire_date.split("-");
-    expiredDate = new Date(expiredDate[0], expiredDate[1]-1, expiredDate[2]);
+    // let expiredDate = props.data.expire_date.split("-");
+    // expiredDate = new Date(expiredDate[0], expiredDate[1]-1, expiredDate[2]);
 
-    let timeDifference = expiredDate - new Date();
-    let dayDifference = Math.ceil(timeDifference / (1000*3600*24));
+    // let timeDifference = expiredDate - new Date();
+    // let dayDifference = Math.ceil(timeDifference / (1000*3600*24));
 
     return (
         <div className={styles.plantReminderContainer}>
-            <img src={`${Api.path}/plant-images/${data.image}`} style={{ height: '150px', width: '150px', objectFit: 'contain' , minWidth:'150px'}} />
+            <img src={`${Api.path}/uploads/${data.photo}`} style={{ height: '150px', width: '150px', objectFit: 'contain' , minWidth:'150px'}} />
             <div style={{ border: '1px solid black', width: '100%', padding: '0px 8px' }}>
                 <p><span className={styles.hyperlink}>Nickname</span>: {data.nickname}</p>
                 <p><span className={styles.hyperlink}>Species:</span> {data.species} </p>
-                <p><span className={styles.hyperlink}>Reminder:</span> Water in {dayDifference} days</p>
+                <p><span className={styles.hyperlink}>Reminder:</span> Water Every {data.waterFreq} days</p>
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '10px' }}>
                     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-
+{/* 
                         <input type="checkbox" ref={checkboxRef} className={styles.checkbox} onChange={doOnChange}/>
-                        <label>I completed this task</label>
+                        <label>I completed this task</label> */}
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'row' }}>

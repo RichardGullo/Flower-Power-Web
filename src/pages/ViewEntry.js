@@ -13,8 +13,9 @@ function ViewEntry(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (cookies['username'] == undefined)
+        if (cookies['token'] == undefined)
             navigate("/");
+        console.log(data);
 
         props.toggleNav(location.pathname);
     }, []);
@@ -28,7 +29,7 @@ function ViewEntry(props) {
                 <div className={styles.leftColumn}>
 
                     <div className={styles.imageContainer}>
-                        <img src={`${Api.path}/plant-images/${data.image}`} style={{ height: 300, objectFit: 'contain' }} />
+                        <img src={`${Api.path}/uploads/${data.photo}`} style={{ height: 300, objectFit: 'contain' }} />
                     </div>
 
                 </div>
@@ -40,10 +41,10 @@ function ViewEntry(props) {
 
                     <p><span class="hyperlink">Plant Species:</span> {data.species} </p>
 
-                    <p><span class="hyperlink">Date Acquired:</span> {data.date_acquired} </p>
+                    <p><span class="hyperlink">Date Acquired:</span> {data.acquiredDate} </p>
 
                     <p class="hyperlink">Reminders:</p>
-                    <p>This plant needs to be watered every {data.water} days.</p>
+                    <p>This plant needs to be watered every {data.waterFreq} days.</p>
 
                 </div>
 
@@ -55,7 +56,7 @@ function ViewEntry(props) {
                     <h2>Plant Classification</h2>
 
                     <div style={{ flexWrap: 'wrap', flexDirection: 'row', display: 'flex' }}>
-                        {data.classification.map((element) => {
+                        {data.classes.map((element) => {
                             return <RoundButton data={{ selected: false, name: element.name }} clickable={false} />
                         })}
                     </div>

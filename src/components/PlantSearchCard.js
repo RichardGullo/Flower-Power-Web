@@ -17,16 +17,16 @@ function PlantSearchCard(props) {
 
     return (
         <div className={styles.plantReminderContainer}>
-            <img src={`${Api.path}/plant-images/${data.image}`} style={{ height: '150px', width: '150px', objectFit: 'contain',alignSelf:'center', minWidth:'150px' }} />
+            <img src={`${Api.path}/uploads/${data.photo}`} style={{ height: '150px', width: '150px', objectFit: 'contain',alignSelf:'center', minWidth:'150px' }} />
             <div style={{ border: '1px solid black', width: '100%', padding: '0px 8px' }}>
                 <p><span className={styles.hyperlink}>Nickname</span>: {data.nickname}</p>
                 <p><span className={styles.hyperlink}>Species:</span> {data.species}</p>
-                <p><span className={styles.hyperlink}>Reminder:</span> Water in {data.water} days</p>
+                <p><span className={styles.hyperlink}>Reminder:</span> Water in {data.waterFreq} days</p>
                 <div>
                         <p><span className={styles.hyperlink}>Plant Classification:</span></p>
 
                         <div style={{ flexWrap: 'wrap', flexDirection: 'row', display: 'flex' }}>
-                            {data.classification.map((element) => {
+                            {data.classes.map((element) => {
                                 return <RoundButton data={{ selected: false, name: element.name }} clickable={false} />
                             })}
                         </div>

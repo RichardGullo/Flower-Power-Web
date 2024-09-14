@@ -12,13 +12,13 @@ function Account(props) {
     function logout(event){
         event.preventDefault();
         console.log("hello");
-        removeCookie('username',{path:'/'});
-        removeCookie('email',{path:'/'});
+        removeCookie('token',{path:'/'});
+        removeCookie('user',{path:'/'});
         navigate("/");
     }
 
     useEffect(()=>{
-        if(cookies['username'] == undefined)
+        if(cookies['token'] == undefined)
             navigate("/");
 
         props.toggleNav(location.pathname);
