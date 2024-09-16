@@ -35,7 +35,6 @@ function App() {
   
 
   return (
-    <Router>
       <CookiesProvider>
         <AppContextProvider>
           <div class="main-container">
@@ -55,7 +54,6 @@ function App() {
           </div>
         </AppContextProvider>
       </CookiesProvider>
-    </Router>
 
   );
 }
